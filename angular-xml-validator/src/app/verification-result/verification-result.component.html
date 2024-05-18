@@ -1,0 +1,58 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Verification Result
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content *ngIf="verificationResult">
+    <div class="status-section">
+      <div class="status-text">
+        <h3>Status</h3>
+        <mat-list>
+          <mat-list-item>
+            <strong>Date Within Validity:</strong> {{ verificationResult['Date Within Validity'] }}
+          </mat-list-item>
+          <mat-list-item>
+            <strong>Signature Validity:</strong> {{ verificationResult['Signature Validity'] }}
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <mat-icon class="status-icon" [ngClass]="{'valid': isValid(), 'invalid': !isValid()}">
+        {{ isValid() ? 'verified' : 'cancel' }}
+      </mat-icon>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="section">
+      <h3>Certificate Info</h3>
+      <div class="subsection">
+        <h4>Issuer</h4>
+        <mat-list>
+          <mat-list-item *ngFor="let key of issuerDetails | keyvalue">
+            <strong>{{ key.key }}:</strong> {{ key.value }}
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="subsection">
+        <h4>Subject</h4>
+        <mat-list>
+          <mat-list-item *ngFor="let key of subjectDetails | keyvalue">
+            <strong>{{ key.key }}:</strong> {{ key.value }}
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="subsection">
+        <h4>Validity</h4>
+        <mat-list>
+          <mat-list-item>
+            <strong>Valid From:</strong> {{ verificationResult['Certificate Info']['Valid From'] }}
+          </mat-list-item>
+          <mat-list-item>
+            <strong>Valid To:</strong> {{ verificationResult['Certificate Info']['Valid To'] }}
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

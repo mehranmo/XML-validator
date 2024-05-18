@@ -1,0 +1,50 @@
+.status-section {
+  position: relative;
+  margin-bottom: 20px;
+  padding-right: 60px; /* Ensure there is enough space for the icon */
+}
+
+.status-text {
+  flex-grow: 1;
+}
+
+.mat-icon {
+width : 60px;
+height: 60px;
+
+}
+
+.status-icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 50px; /* Adjust size as needed */
+  line-height: 1.5;  /* Ensure it takes the height of at least two lines */
+  color: green; /* Default color, overridden by class */
+}
+
+.status-icon.invalid {
+  color: red;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.subsection {
+  margin-top: 10px;
+}
+
+.subsection h4 {
+  margin-bottom: 5px;
+}
+
+mat-divider {
+  margin: 10px 0;
+}

@@ -1,0 +1,5 @@
+<app-header></app-header>
+<div class="container">
+  <app-file-upload (verificationResult)="handleVerificationResult($event)"></app-file-upload>
+  <app-verification-result [verificationResult]="verificationResult"></app-verification-result>
+</div>

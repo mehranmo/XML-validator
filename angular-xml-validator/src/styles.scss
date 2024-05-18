@@ -1,0 +1,25 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Add any global styles here */
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-card {
+    margin: 20px;
+  }
+  
+  mat-card-header {
+    background-color: #3f51b5;
+    color: white;
+    
+  }
+  
+  mat-card-title {
+    color: white;
+}
+
+mat-card-content {
+    padding: 10px;
+}
