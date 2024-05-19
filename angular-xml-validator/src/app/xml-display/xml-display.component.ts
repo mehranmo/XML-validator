@@ -15,35 +15,35 @@ export class XmlDisplayComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['xmlContent'] && this.xmlContent) {
-      this.formattedXml = this.formatXmlToMarkdown(this.xmlContent);
+      this.formattedXml = this.formatXmlToCollapsibleList(this.xmlContent);
     }
   }
 
-  formatXmlToMarkdown(xml: string): string {
+  formatXmlToCollapsibleList(xml: string): string {
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xml, 'application/xml');
-    return this.convertElementToMarkdown(xmlDoc.documentElement, 1);
+    return this.convertElementToCollapsibleList(xmlDoc.documentElement, 0);
   }
 
-  convertElementToMarkdown(element: Element, level: number): string {
-    let markdown = '';
-    const tagName = element.tagName.split(':').pop(); // Remove namespace
-    const indent = '  '.repeat(level - 1);
-    const heading = '#'.repeat(level);
+  convertElementToCollapsibleList(element: Element, depth: number): string {
+    let html = `<div class="element depth-${depth}">`;
 
-    if (element.children.length > 0) {
-      markdown += `${indent}${heading} ${tagName}\n`;
-      Array.from(element.children).forEach(child => {
-        markdown += this.convertElementToMarkdown(child, level + 1);
-      });
-    } else {
-      markdown += `${indent}${heading} ${tagName}: ${element.textContent}\n`;
-    }
+    html += `<details class="depth-${depth}">`;
+    html += `<summary class="element-summary depth-${depth}">${element.tagName}</summary>`;
 
     Array.from(element.attributes).forEach(attr => {
-      markdown += `${indent}- ${attr.name}: ${attr.value}\n`;
+      html += `<div class="element-attribute">${attr.name}: ${attr.value}</div>`;
     });
 
-    return markdown;
+    Array.from(element.children).forEach(child => {
+      html += this.convertElementToCollapsibleList(child, depth + 1);
+    });
+
+    if (element.children.length === 0 && element.textContent) {
+      html += `<div class="element-text">${element.textContent}</div>`;
+    }
+
+    html += `</details></div>`;
+    return html;
   }
 }

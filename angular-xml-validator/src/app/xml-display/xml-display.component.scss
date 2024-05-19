@@ -1,13 +1,62 @@
 .xml-container {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 4px;
-    font-family: monospace;
-    font-size: 14px;
-    max-height: 100vh; /* Ensure the container doesn't overflow */
-    overflow-y: auto;
-  }
-  
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 14px;
+  max-height: 100vh; /* Ensure the container doesn't overflow */
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+::ng-deep .element {
+  margin-left: 1em;
+  margin-top: 1em; /* Add spacing between elements relative to depth */
+}
+
+::ng-deep .element-summary {
+  display: block;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+::ng-deep .element-attribute {
+  margin-left: 1em;
+  font-size: 14px; /* Same size for attributes no matter the depth */
+  color: #666;
+}
+
+::ng-deep .element-text {
+  margin-left: 1em;
+  font-size: 14px;
+}
+
+/* Depth-specific styles */
+::ng-deep .depth-0 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+::ng-deep .depth-1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+::ng-deep .depth-2 {
+  font-size: 18px;
+}
+
+::ng-deep .depth-3 {
+  font-size: 16px;
+}
+
+::ng-deep .depth-4,
+::ng-deep .depth-5,
+::ng-deep .depth-6,
+::ng-deep .depth-7,
+::ng-deep .depth-8,
+::ng-deep .depth-9 {
+  font-size: 14px;
+}
