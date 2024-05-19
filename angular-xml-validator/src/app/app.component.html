@@ -1,5 +1,10 @@
 <app-header></app-header>
 <div class="container">
-  <app-file-upload (verificationResult)="handleVerificationResult($event)"></app-file-upload>
-  <app-verification-result [verificationResult]="verificationResult"></app-verification-result>
+  <div class="left">
+    <app-file-upload (verificationResult)="handleVerificationResult($event)" (xmlContent)="handleXmlContent($event)"></app-file-upload>
+    <app-verification-result [verificationResult]="verificationResult"></app-verification-result>
+  </div>
+  <div class="right">
+    <app-xml-display [xmlContent]="xmlContent"></app-xml-display>
+  </div>
 </div>

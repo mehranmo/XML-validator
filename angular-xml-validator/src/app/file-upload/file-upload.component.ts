@@ -22,6 +22,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class FileUploadComponent {
   @Output() verificationResult = new EventEmitter<any>();
+  @Output() xmlContent = new EventEmitter<string>();
   form: FormGroup;
   fileName: string = '';
 
@@ -38,6 +39,11 @@ export class FileUploadComponent {
       this.form.patchValue({
         file: file
       });
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.xmlContent.emit(reader.result as string);
+      };
+      reader.readAsText(file);
     }
   }
 

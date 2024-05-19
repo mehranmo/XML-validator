@@ -1,0 +1,13 @@
+.xml-container {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 14px;
+    max-height: 100vh; /* Ensure the container doesn't overflow */
+    overflow-y: auto;
+  }
+  

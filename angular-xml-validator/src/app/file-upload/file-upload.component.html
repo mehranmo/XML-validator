@@ -1,21 +1,20 @@
 <mat-card>
-    <mat-card-header>
-      <mat-card-title>Upload XML File</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="form" (ngSubmit)="submit()" class="file-upload-form">
-        <div class="file-input-container">
-          <input type="file" id="fileInput" (change)="onFileChange($event)" hidden>
-          <button mat-raised-button color="primary" type="button" (click)="triggerFileInput()">
-            <mat-icon>upload</mat-icon>
-            Choose File
-          </button>
-          <span *ngIf="fileName" class="file-name">{{ fileName }}</span>
-        </div>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!form.get('file')?.value" class="upload-button">
-          Upload
+  <mat-card-header>
+    <mat-card-title>Upload XML File</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div>
+        <input type="file" id="fileInput" (change)="onFileChange($event)" hidden>
+        <button mat-raised-button color="primary" type="button" (click)="triggerFileInput()">
+          <mat-icon>upload</mat-icon>
+          Choose File
         </button>
-      </form>
-    </mat-card-content>
-  </mat-card>
-  
+        <span *ngIf="fileName">{{ fileName }}</span>
+      </div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.get('file')?.value">
+        Upload
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

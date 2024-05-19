@@ -1,4 +1,14 @@
 .container {
-    padding: 20px;
-  }
-  
+  display: flex;
+}
+
+.left, .right {
+  flex: 1;
+  padding: 10px;
+}
+
+.right {
+  background-color: #f5f5f5;
+  border-left: 1px solid #ccc;
+  overflow-y: auto;
+}
