@@ -1,10 +1,11 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-xml-display',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatCardModule],
   templateUrl: './xml-display.component.html',
   styleUrls: ['./xml-display.component.scss']
 })
@@ -28,22 +29,35 @@ export class XmlDisplayComponent implements OnChanges {
   convertElementToCollapsibleList(element: Element, depth: number): string {
     let html = `<div class="element depth-${depth}">`;
 
-    html += `<details class="depth-${depth}">`;
-    html += `<summary class="element-summary depth-${depth}">${element.tagName}</summary>`;
+    const attributesHtml = Array.from(element.attributes).map(attr => {
+      return `<div class="element-attribute">${attr.name}: <span class="element-text">${attr.value}</span></div>`;
+    }).join('');
 
-    Array.from(element.attributes).forEach(attr => {
-      html += `<div class="element-attribute">${attr.name}: ${attr.value}</div>`;
-    });
-
-    Array.from(element.children).forEach(child => {
-      html += this.convertElementToCollapsibleList(child, depth + 1);
-    });
-
-    if (element.children.length === 0 && element.textContent) {
-      html += `<div class="element-text">${element.textContent}</div>`;
+    if (element.children.length > 0) {
+      html += `<details class="depth-${depth}">`;
+      html += `<summary class="element-summary depth-${depth}">${element.tagName}</summary>`;
+      html += attributesHtml;
+      Array.from(element.children).forEach(child => {
+        html += this.convertElementToCollapsibleList(child, depth + 1);
+      });
+      html += `</details>`;
+    } else {
+      const content = element.textContent?.trim() || '';
+      if (content.length > 0 && content.length <= 50) {
+        html += `<span class="element-summary depth-${depth}">${element.tagName}: <span class="element-text">${content}</span></span>`;
+        html += attributesHtml;
+      } else {
+        html += `<details class="depth-${depth}">`;
+        html += `<summary class="element-summary depth-${depth}">${element.tagName}</summary>`;
+        html += attributesHtml;
+        if (content.length > 0) {
+          html += `<div class="element-text">${content}</div>`;
+        }
+        html += `</details>`;
+      }
     }
 
-    html += `</details></div>`;
+    html += `</div>`;
     return html;
   }
 }

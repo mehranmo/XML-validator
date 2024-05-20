@@ -1,7 +1,6 @@
 .xml-container {
   background-color: #ffffff;
-  border: 1px solid #ddd;
-  padding: 10px;
+  padding: 0px;
   border-radius: 4px;
   font-family: monospace;
   font-size: 14px;
@@ -20,6 +19,7 @@
   display: block;
   margin-top: 5px;
   cursor: pointer;
+  color: #2a2a2a; /* Tag color */
 }
 
 ::ng-deep .element-attribute {
@@ -31,6 +31,7 @@
 ::ng-deep .element-text {
   margin-left: 1em;
   font-size: 14px;
+  color: #4a90e2; /* Value color */
 }
 
 /* Depth-specific styles */
@@ -59,4 +60,19 @@
 ::ng-deep .depth-8,
 ::ng-deep .depth-9 {
   font-size: 14px;
+}
+
+/* Style for the details and summary elements */
+::ng-deep details {
+  margin-left: 1em;
+}
+
+::ng-deep summary {
+  display: list-item; /* Ensure the expand/collapse icon is visible */
+  // list-style: none;
+}
+
+::ng-deep summary::marker {
+  font-size: 1.2em;
+  margin-right: 0.1em;
 }
